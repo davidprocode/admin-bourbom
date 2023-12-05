@@ -1,14 +1,16 @@
 const express = require("express");
 const router = express.Router();
+const path = require("path");
 
 const database = require("./db");
 const Aluno = require("./aluno");
 
-router.get("/", async (req, res, next) => {
-  await database.sync();
+router.get("/novo-aluno", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "/index.html"));
+});
 
-  const novoAluno = await Aluno.create({ nome: "David Luan" });
-
+router.post("/novo-aluno", async (req, res, next) => {
+  const novoAluno = await Aluno.create({ nome: req.body.nome });
   const alunos = await Aluno.findAll();
   res.json(alunos);
 });
