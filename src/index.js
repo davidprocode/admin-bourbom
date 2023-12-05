@@ -1,8 +1,7 @@
-(async () => {
-  const database = require("./db");
-  const Aluno = require("./aluno");
+const express = require("express");
+const app = express();
+const routes = require("./routes");
 
-  await database.sync();
+app.use("/api", routes);
 
-  const novoAluno = Aluno.create({ nome: "David Luan" });
-})();
+app.listen(3000, () => console.log("Example app is listening on port 3000."));
