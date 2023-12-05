@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require("path");
 
 const database = require("./db");
-const Aluno = require("./aluno");
+const Aluno = require("./models/aluno");
 
 router.get("/novo-aluno", (req, res, next) => {
   res.sendFile(path.join(__dirname, "/index.html"));
